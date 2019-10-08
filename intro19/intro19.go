@@ -5,6 +5,6 @@ package intro19
 import "net/http"
 
 // RunServer executes the server logic
-func RunServer(addr string) {
-	http.ListenAndServe(addr, nil)
+func RunServer(addr string) error {
+	return http.ListenAndServe(addr, nil)
 }
