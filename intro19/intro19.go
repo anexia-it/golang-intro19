@@ -2,10 +2,15 @@
 // (version 2019) example code
 package intro19
 
-import "net/http"
+import (
+	"github.com/gorilla/mux"
+	"net/http"
+)
 
 // RunServer executes the server logic
 func RunServer(addr string) error {
-	http.HandleFunc("/hello", helloHandler)
-	return http.ListenAndServe(addr, nil)
+	router := mux.NewRouter()
+
+	router.HandleFunc("/hello", helloHandler)
+	return http.ListenAndServe(addr, router)
 }
