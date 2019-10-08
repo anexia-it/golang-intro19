@@ -2,6 +2,7 @@ package intro19
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 )
 
@@ -17,7 +18,7 @@ func helloHandler(rw http.ResponseWriter, req *http.Request) {
 	dec := json.NewDecoder(req.Body)
 
 	var r helloRequest
-	if err := dec.Decode(&r); err != nil {
+	if err := dec.Decode(&r); err != nil && err != io.EOF {
 		http.Error(rw, "json decoding failed: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
