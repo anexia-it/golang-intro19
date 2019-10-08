@@ -11,8 +11,14 @@ import (
 func RunServer(addr string) error {
 	router := mux.NewRouter()
 
+	pubSubCtrl := newPubSubController()
+
 	router.HandleFunc("/hello", helloHandler)
 	router.HandleFunc("/convert/{from}/{to}", convertHandler)
 	router.HandleFunc("/prettify/{fmt}", prettifyHandler)
+
+	router.HandleFunc("/pub", pubSubCtrl.publishHandler)
+	router.HandleFunc("/sub", pubSubCtrl.subscriberHandler)
+
 	return http.ListenAndServe(addr, router)
 }
