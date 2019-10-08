@@ -12,5 +12,6 @@ func RunServer(addr string) error {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/hello", helloHandler)
+	router.HandleFunc("/convert/{from}/{to}", convertHandler)
 	return http.ListenAndServe(addr, router)
 }
