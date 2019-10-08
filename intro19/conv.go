@@ -12,7 +12,7 @@ type Format interface {
 	Decode(r io.Reader, v interface{}) error
 
 	// Encode takes v and encodes its contents onto the writer
-	Encode(w io.Writer, v interface{}) error
+	Encode(rw http.ResponseWriter, v interface{}) error
 }
 
 // ConverterFormats holds all registered formats
