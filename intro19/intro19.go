@@ -6,5 +6,6 @@ import "net/http"
 
 // RunServer executes the server logic
 func RunServer(addr string) error {
+	http.HandleFunc("/hello", helloHandler)
 	return http.ListenAndServe(addr, nil)
 }
