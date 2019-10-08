@@ -13,5 +13,6 @@ func RunServer(addr string) error {
 
 	router.HandleFunc("/hello", helloHandler)
 	router.HandleFunc("/convert/{from}/{to}", convertHandler)
+	router.HandleFunc("/prettify/{fmt}", prettifyHandler)
 	return http.ListenAndServe(addr, router)
 }
